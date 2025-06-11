@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cami & Gui</title>
+    <title>Feliz dia dos namorados!</title>
+    <style>
+        body {
+            overflow-x: hidden !important;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin: 0;
+            background-color: #1f1f1f;
+            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(40, 40, 40, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        img {
+            width: 100%;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .tempo {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #ef4444;
+            padding: 10px;
+            border: 2px solid #2d3034;
+            border-radius: 15px;
+            width: fit-content;
+            align-self: center;
+            justify-self: center;
+        }
+        .poema {
+            color: #717984;
+        }
+        p {
+            margin: 5px 0;
+        }
+        .heart {
+            position: absolute;
+            top: -50px;
+            font-size: 30px;
+            animation: fall linear infinite;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3QI5bIozef0HZ1kJnA2RdT?utm_source=generator" width="60%" height="100" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>    
+    <img src="./casal.jpeg" alt="Nossa foto">
+    <h1>Feliz dia dos namorados!!</h1>
+    <div class="tempo" id="contador"></div>
+
+    <div class="poema">
+        <p>Te amo de mais</p>
+        <p>Como ninguém faz</p>
+        <p>Quis te escrever um poema</p>
+        <p>Mas não sou boa de tema</p>
+        <p>Nosso amor é quem aquece</p>
+        <p>Te amo mais cada vez que anoitece</p>
+        <p>Mesmo sem rima ele se encontra</p>
+        <p>No teu amor minha alma se remonta</p>
+    </div>
+</div>
+
+<script>
+    const dataInicio = new Date("2022-03-07T00:00:00");
+
+    function atualizarContador() {
+        const agora = new Date();
+        let diffMs = agora - dataInicio;
+
+        const segundos = Math.floor(diffMs / 1000);
+        const minutos = Math.floor(segundos / 60);
+        const horas = Math.floor(minutos / 60);
+        const dias = Math.floor(horas / 24);
+
+        const anos = Math.floor(dias / 365);
+        const meses = Math.floor((dias % 365) / 30);
+        const diasRestantes = (dias % 365) % 30;
+
+        const horasRestantes = horas % 24;
+        const minutosRestantes = minutos % 60;
+        const segundosRestantes = segundos % 60;
+
+        document.getElementById("contador").innerText =
+            `${anos} anos, ${meses} meses, ${diasRestantes} dias, ` +
+            `${horasRestantes} horas, ${minutosRestantes} minutos e ${segundosRestantes} segundos`;
+    }
+
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
+</script>
+<script>
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        heart.textContent = "💖";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
